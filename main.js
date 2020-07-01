@@ -1,11 +1,15 @@
 var input = document.getElementById("example");
 var card = document.querySelector(".card");
+var btn = document.querySelector(".abc");
+btn.addEventListener("click", (e) => {
+  getInfo(e);
+});
 input.addEventListener("keyup", (e) => {
   getInfo(e);
 });
 
 function getInfo(e) {
-  if (e.keyCode == 13) {
+  if (e.keyCode == 13 || e.target.value=='+') {
     card.innerHTML = `
     <div class="load"><svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></load>
   `;
@@ -46,7 +50,9 @@ function getInfo(e) {
           circle.className = "card_circle transition";
           circle.style.background = `url(${hd_image_url}) no-repeat center center`;
           card.append(circle);
-          document.querySelector('.insta_link').href=`https://www.instagram.com/${input.value}/`
+          document.querySelector(
+            ".insta_link"
+          ).href = `https://www.instagram.com/${input.value}/`;
         } else {
           card.innerHTML = `<div class="cta-container transition"><a href=''class="cta" >user not found</a></div><div class="card_circle transition"></div>`;
         }
